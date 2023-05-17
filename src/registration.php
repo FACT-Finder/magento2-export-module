@@ -2,4 +2,4 @@
 
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Factfinder_ExportModule', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Factfinder_Export', __DIR__);
