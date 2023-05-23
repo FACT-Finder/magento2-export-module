@@ -54,9 +54,9 @@
                 <field negative="1" id="factfinder_export/general/version">ng</field>
             </depends>
         </field>
-<!--        <field id="ff_build_connection" translate="label comment" type="button" sortOrder="71" showInDefault="1" showInWebsite="1" showInStore="1">-->
-<!--            <label>Test Connection</label>-->
-<!--            <frontend_model>Factfinder\Export\Block\Adminhtml\System\Config\Button\TestConnection</frontend_model>-->
-<!--        </field>-->
+        <field id="ff_export_build_connection" translate="label comment" type="button" sortOrder="71" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Test Connection</label>
+            <frontend_model>Factfinder\Export\Block\Adminhtml\System\Config\Button\TestApiConnection</frontend_model>
+        </field>
     </group>
 </include>
