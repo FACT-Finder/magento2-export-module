@@ -8,7 +8,7 @@ use Factfinder\Export\Model\Config\AuthConfig;
 use Magento\Framework\ObjectManagerInterface;
 use Omikron\FactFinder\Communication\Credentials;
 
-final class CredentialsFactory
+class CredentialsFactory
 {
     public function __construct(
         private readonly ObjectManagerInterface $objectManager,

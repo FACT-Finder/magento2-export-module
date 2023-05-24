@@ -7,7 +7,7 @@ namespace Factfinder\Export\Model\Config;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface as Scope;
 
-final class AuthConfig
+class AuthConfig
 {
     private const PATH_USERNAME     = 'factfinder_export/general/username';
     private const PATH_PASSWORD     = 'factfinder_export/general/password';

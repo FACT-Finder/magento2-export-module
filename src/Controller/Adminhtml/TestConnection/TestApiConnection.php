@@ -30,7 +30,7 @@ class TestApiConnection extends Action
         parent::__construct($context);
     }
 
-    public function execute(): Json
+    public function execute(): ?Json
     {
         try {
             $request = $this->getRequest();
@@ -54,7 +54,7 @@ class TestApiConnection extends Action
 
     private function getCredentials(array $params): Credentials
     {
-        // If password wasn't edited, load it from config
+        // If password was not edit, load it from module configuration
         if (!isset($params['password']) || $params['password'] === self::OBSCURED_VALUE) {
             $params['password'] = $this->authConfig->getPassword();
         }
