@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<ruleset name="FACT-Finder">
+    <description>FACT-Finder Coding Standard</description>
+
+    <arg value="psw" />
+    <arg name="extensions" value="php,phtml" />
+
+    <config name="ignore_warnings_on_exit" value="1" />
+
+    <rule ref="vendor/magento/magento-coding-standard/Magento2">
+        <exclude name="Magento2.Commenting" />
+        <exclude name="Magento2.Annotation" />
+    </rule>
+
+    <rule ref="Generic.CodeAnalysis.EmptyStatement" />
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter">
+        <exclude-pattern>*/Observer/*</exclude-pattern>
+        <exclude-pattern>*/Plugin/*</exclude-pattern>
+        <exclude-pattern>*/Setup/*</exclude-pattern>
+    </rule>
+    <rule ref="Generic.Commenting.Fixme" />
+    <rule ref="Generic.Commenting.Todo" />
+    <rule ref="Generic.ControlStructures.InlineControlStructure.NotAllowed">
+        <exclude-pattern>*.phtml</exclude-pattern>
+    </rule>
+    <rule ref="Generic.Files.LineLength">
+        <exclude-pattern>*.phtml</exclude-pattern>
+        <exclude-pattern>*Test.php</exclude-pattern>
+        <properties>
+            <property name="lineLimit" value="140" />
+            <property name="absoluteLineLimit" value="0" />
+        </properties>
+    </rule>
+    <rule ref="Generic.Formatting.SpaceAfterCast" />
+    <rule ref="Generic.Files.LineEndings">
+        <exclude name="Generic.Files.LineEndings.InvalidEOLChar"/>
+    </rule>
+    <rule ref="Generic.Metrics.CyclomaticComplexity">
+        <exclude-pattern>*/Setup/*</exclude-pattern>
+    </rule>
+    <rule ref="Internal.NoCodeFound">
+        <exclude-pattern>*.phtml</exclude-pattern>
+    </rule>
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>*Test.php</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis">
+        <exclude-pattern>*.phtml</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword">
+        <exclude-pattern>*.phtml</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired" />
+    <rule ref="Magento2.Security.InsecureFunction.FoundWithAlternative">
+        <exclude-pattern>*Test.php</exclude-pattern>
+    </rule>
+</ruleset>

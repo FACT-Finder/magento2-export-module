@@ -13,12 +13,14 @@ class CredentialsFactory
     public function __construct(
         private readonly ObjectManagerInterface $objectManager,
         private readonly AuthConfig $authConfig
-    ) {}
+    ) {
+    }
 
     public function create(array $authData = null): Credentials
     {
         return $this->objectManager->create(
-            Credentials::class, $authData ?? [
+            Credentials::class,
+            $authData ?? [
                 'username' => $this->authConfig->getUsername(),
                 'password' => $this->authConfig->getPassword(),
                 'prefix'   => $this->authConfig->getAuthenticationPrefix(),
