@@ -1,0 +1,8 @@
+- Solves issue:
+    - Issue or task number/code, for example: FFWEB-2718
+- Description:
+    - changes description
+- Tested with Magento editions/versions:
+    - For example: 2.4.6
+- Tested with PHP versions:
+    - For example: 8.1
