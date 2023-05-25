@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd"
+         beStrictAboutOutputDuringTests="true"
+         cacheDirectory=".phpunit.cache"
+         requireCoverageMetadata="true"
+         beStrictAboutCoverageMetadata="true">
+
+  <php>
+    <ini name="date.timezone" value="Europe/Berlin"/>
+    <ini name="error_reporting" value="-1"/>
+  </php>
+
+  <testsuite name="unit">
+    <directory>src/Test/Unit</directory>
+  </testsuite>
+
+  <coverage/>
+  <source>
+    <include>
+      <directory suffix=".php">.</directory>
+    </include>
+  </source>
+</phpunit>
