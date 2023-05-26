@@ -8,7 +8,6 @@ use Factfinder\Export\Model\Config\FtpConfig;
 use Factfinder\Export\Model\FtpUploader;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Phrase;
 
@@ -36,8 +35,6 @@ class TestFtpConnection extends Action
         } catch (\Exception $e) {
             $message = $e->getMessage();
         }
-
-//        var_dump($message); die();
 
         return $this->jsonResultFactory->create()->setData(['message' => $message]);
     }
