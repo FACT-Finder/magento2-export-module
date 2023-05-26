@@ -31,9 +31,9 @@ class SftpPublicKeyAuth extends SftpBase
         }
     }
 
-//    /**
-//     * @SuppressWarnings(PHPMD.StaticAccess)
-//     */
+    /**
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     */
     protected function getKey(string $passphrase): PrivateKey
     {
         $configDirectory = $this->fileSystem->getDirectoryRead(DirectoryList::CONFIG);
