@@ -41,7 +41,7 @@ class TestFtpConnection extends Action
 
     private function getConfig(array $params): array
     {
-        $prefix   = 'ff_upload_';
+        $prefix   = 'ff_export_upload_';
         $filtered = array_filter($params, fn (string $key) => (bool) preg_match("#^{$prefix}#", $key), ARRAY_FILTER_USE_KEY);
 
         return array_combine(
@@ -52,12 +52,12 @@ class TestFtpConnection extends Action
 
     private function getRealValuesFromObscured(array $params): array
     {
-        if (!isset($params['ff_upload_password']) || $params['ff_upload_password'] === self::OBSCURED_VALUE) {
-            $params['ff_upload_password'] = $this->ftpConfig->getUserPassword();
+        if (!isset($params['ff_export_upload_password']) || $params['ff_export_upload_password'] === self::OBSCURED_VALUE) {
+            $params['ff_export_upload_password'] = $this->ftpConfig->getUserPassword();
         }
 
-        if (!isset($params['ff_upload_key_passphrase']) || $params['ff_upload_key_passphrase'] === self::OBSCURED_VALUE) {
-            $params['ff_upload_key_passphrase'] = $this->ftpConfig->getKeyPassphrase();
+        if (!isset($params['ff_export_upload_key_passphrase']) || $params['ff_export_upload_key_passphrase'] === self::OBSCURED_VALUE) {
+            $params['ff_export_upload_key_passphrase'] = $this->ftpConfig->getKeyPassphrase();
         }
 
         return $params;

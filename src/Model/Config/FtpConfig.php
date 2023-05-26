@@ -8,7 +8,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class FtpConfig
 {
-    private const FPT_UPLOAD_CONFIG_PATH = 'factfinder_export/data_transfer/ff_upload_';
+    private const FPT_UPLOAD_CONFIG_PATH = 'factfinder_export/data_transfer/ff_export_upload_';
 
     public function __construct(private readonly ScopeConfigInterface $scopeConfig)
     {
@@ -17,15 +17,15 @@ class FtpConfig
     public function toArray(): array
     {
         return [
-            'host'                => $this->getConfig('host'),
-            'user'                => $this->getConfig('user'),
-            'username'            => $this->getConfig('user'), // adjustments for \Magento\Framework\Filesystem\Io\Sftp
-            'password'            => $this->getConfig('password'),
-            'ssl'                 => (bool) $this->getConfig('use_ssl'),
-            'passive'             => true,
-            'port'                => $this->getConfig('port') ?: 21,
-            'key_passphrase'      => $this->getConfig('key_passphrase'),
-            'type'                => $this->getConfig('type'),
+            'host' => $this->getConfig('host'),
+            'user' => $this->getConfig('user'),
+            'username' => $this->getConfig('user'), // adjustments for \Magento\Framework\Filesystem\Io\Sftp
+            'password' => $this->getConfig('password'),
+            'ssl' => (bool) $this->getConfig('use_ssl'),
+            'passive' => true,
+            'port' => $this->getConfig('port') ?: 21,
+            'key_passphrase' => $this->getConfig('key_passphrase'),
+            'type' => $this->getConfig('type'),
             'authentication_type' => $this->getConfig('authentication_type'),
         ];
     }

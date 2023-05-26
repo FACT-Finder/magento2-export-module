@@ -9,12 +9,10 @@ namespace Factfinder\Export\Api;
  */
 interface StreamInterface
 {
-    public function addEntity(array $entity): void;
-
-    public function getContent(): string;
-
     /**
      * This method allows to add logic that should be executed after the feed is generated
      */
     public function finalize(): void;
+    public function addEntity(array $entity): void;
+    public function getContent(): string;
 }
