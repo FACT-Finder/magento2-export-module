@@ -9,6 +9,9 @@ use Factfinder\Export\Api\Export\FieldInterface;
 use Factfinder\Export\Api\ExporterInterface;
 use Factfinder\Export\Api\StreamInterface;
 
+/**
+ * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+ */
 class Feed
 {
     public function __construct(
