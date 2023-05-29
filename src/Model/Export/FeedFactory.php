@@ -12,7 +12,7 @@ class FeedFactory
 {
     public function __construct(
         private readonly ObjectManagerInterface $objectManager,
-        private readonly array $feedPool
+        private readonly array $feedPool,
     ) {
     }
 

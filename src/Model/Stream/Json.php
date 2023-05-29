@@ -20,8 +20,7 @@ class Json implements StreamInterface
         return json_encode($this->stream);
     }
 
-    public function finalize(): void
+    public function finalize(): void //phpcs:ignore Magento2.CodeAnalysis.EmptyBlock.DetectedFunction
     {
-        //do nothing
     }
 }
