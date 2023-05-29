@@ -15,6 +15,7 @@
     "omikron/factfinder-communication-sdk": "^0.9.5",
     "magento/framework": "~103.0.4",
     "magento/module-store": "~101.1.6",
+    "magento/module-configurable-product": "~100.4.6",
     "phpseclib/phpseclib": "~3.0"
   },
   "autoload": {
