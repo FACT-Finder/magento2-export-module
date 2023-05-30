@@ -11,6 +11,7 @@
             <resource>Factfinder_Export::config</resource>
             <include path="Factfinder_Export::system/general.xml" />
             <include path="Factfinder_Export::system/data_transfer.xml" />
+            <include path="Factfinder_Export::system/export.xml" />
         </section>
     </system>
 </config>
