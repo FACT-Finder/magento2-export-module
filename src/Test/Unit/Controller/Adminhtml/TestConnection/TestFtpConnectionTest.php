@@ -69,10 +69,10 @@ class TestFtpConnectionTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->request = $this->createConfiguredMock(RequestInterface::class, ['getParams' => []]);
+        $this->request     = $this->createConfiguredMock(RequestInterface::class, ['getParams' => []]);
         $this->ftpUploader = $this->createMock(FtpUploader::class);
-        $this->jsonResult = $this->createConfiguredMock(JsonResult::class, ['setData' => 'Test message']);
-        $this->controller = new TestFtpConnection(
+        $this->jsonResult  = $this->createConfiguredMock(JsonResult::class, ['setData' => 'Test message']);
+        $this->controller  = new TestFtpConnection(
             $this->createConfiguredMock(Context::class, ['getRequest' => $this->request]),
             $this->createConfiguredMock(JsonFactory::class, ['create' => $this->jsonResult]),
             $this->ftpUploader,
