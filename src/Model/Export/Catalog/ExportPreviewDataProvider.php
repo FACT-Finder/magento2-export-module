@@ -1,0 +1,43 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Factfinder\Export\Model\Export\Catalog;
+
+use Factfinder\Export\Api\Export\DataProviderInterface;
+use Factfinder\Export\Api\Export\ExportEntityInterface;
+use Magento\Catalog\Api\Data\ProductInterface;
+use Magento\Catalog\Model\Product\Type as ProductType;
+use Magento\Framework\ObjectManagerInterface;
+
+class ExportPreviewDataProvider implements DataProviderInterface
+{
+    public function __construct(
+        private readonly ExportPreviewProducts $products,
+        private readonly ObjectManagerInterface $objectManager,
+        private readonly array $productFields,
+        private readonly array $entityTypes,
+        private readonly array $data,
+    ) {
+    }
+
+    /**
+     * @return ExportEntityInterface[]
+     */
+    public function getEntities(): iterable
+    {
+        $this->products->setEntityId((int) $this->data['entityId'] ?? 0);
+        yield from []; // init generator: Prevent errors in case of an empty product collection
+
+        foreach ($this->products as $product) {
+            yield from $this->entitiesFrom($product)->getEntities();
+        }
+    }
+
+    private function entitiesFrom(ProductInterface $product): DataProviderInterface
+    {
+        $type = $this->entityTypes[$product->getTypeId()] ?? $this->entityTypes[ProductType::DEFAULT_TYPE];
+
+        return $this->objectManager->create($type, ['product' => $product, 'productFields' => $this->productFields]);
+    }
+}
