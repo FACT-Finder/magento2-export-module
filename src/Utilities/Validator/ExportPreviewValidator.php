@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Fctfinder\Export\Utilities\Validator;
+namespace Factfinder\Export\Utilities\Validator;
 
 use Factfinder\Export\Api\ValidatorInterface;
 use Factfinder\Export\Exception\ExportPreviewValidationException;
