@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Factfinder\Export\Api\ExporterInterface" type="Factfinder\Export\Model\Exporter" />
+    <preference for="Factfinder\Export\Api\Filter\FilterInterface" type="Factfinder\Export\Model\Filter\TextFilter" />
+    <preference for="Factfinder\Export\Api\StreamInterface" type="Factfinder\Export\Model\Stream\Csv" />
+
+    <type name="Factfinder\Export\Model\Export\Catalog\ExportPreviewDataProvider">
+        <arguments>
+            <argument name="productFields" xsi:type="array">
+                <item name="CategoryPath" xsi:type="object">Factfinder\Export\Model\Export\Catalog\ProductField\CategoryPath</item>
+                <item name="Brand" xsi:type="object">Factfinder\Export\Model\Export\Catalog\ProductField\Brand</item>
+                <item name="FilterAttributes" xsi:type="object">Factfinder\Export\Model\Export\Catalog\ProductField\FilterAttributes</item>
+                <item name="NumericalAttributes" xsi:type="object">Factfinder\Export\Model\Export\Catalog\ProductField\NumericalAttributes</item>
+            </argument>
+            <argument name="entityTypes" xsi:type="array">
+                <item name="simple" xsi:type="string">Factfinder\Export\Model\Export\Catalog\ProductType\SimpleDataProvider</item>
+                <item name="configurable" xsi:type="string">Factfinder\Export\Model\Export\Catalog\ProductType\ConfigurableDataProvider</item>
+                <item name="grouped" xsi:type="string">Factfinder\Export\Model\Export\Catalog\ProductType\GroupedDataProvider</item>
+                <item name="bundle" xsi:type="string">Factfinder\Export\Model\Export\Catalog\ProductType\BundleDataProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Factfinder\Export\Model\Export\FeedFactory">
+        <arguments>
+            <argument name="feedPool" xsi:type="array">
+                <item name="exportPreviewProduct" xsi:type="array">
+                    <item xsi:type="string" name="generator">Factfinder\Export\Model\Export\ExportPreviewProductFeed</item>
+                    <item xsi:type="string" name="dataProvider">Factfinder\Export\Model\Export\Catalog\ExportPreviewDataProvider</item>
+                    <item xsi:type="string" name="fieldProvider">Factfinder\Export\Model\Export\Catalog\FieldProvider</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Factfinder\Export\Model\Export\ExportPreviewProductFeed" type="Factfinder\Export\Model\Export\CatalogFeed" />
+    <virtualType name="Factfinder\Export\Model\Export\CatalogFeed" type="Factfinder\Export\Model\Export\Feed">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="ProductNumber" xsi:type="string">ProductNumber</item>
+                <item name="Master" xsi:type="string">Master</item>
+                <item name="Name" xsi:type="string">Name</item>
+                <item name="Description" xsi:type="string">Description</item>
+                <item name="Short" xsi:type="string">Short</item>
+                <item name="Deeplink" xsi:type="string">Deeplink</item>
+                <item name="Price" xsi:type="string">Price</item>
+                <item name="Brand" xsi:type="string">Brand</item>
+                <item name="Availability" xsi:type="string">Availability</item>
+                <item name="MagentoId" xsi:type="string">MagentoId</item>
+                <item name="ImageURL" xsi:type="string">ImageURL</item>
+                <item name="CategoryPath" xsi:type="string">CategoryPath</item>
+                <item name="FilterAttributes" xsi:type="string">FilterAttributes</item>
+                <item name="HasVariants" xsi:type="string">HasVariants</item>
+                <item name="NumericalAttributes" xsi:type="string">NumericalAttributes</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Factfinder\Export\Model\Export\Catalog\ProductField\Brand" type="Factfinder\Export\Model\Export\Catalog\ProductField\GenericField">
+        <arguments>
+            <argument name="attributeCode" xsi:type="string">manufacturer</argument>
+        </arguments>
+    </virtualType>
+</config>
