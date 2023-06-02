@@ -72,5 +72,23 @@
             <label>Test Upload Connection</label>
             <frontend_model>Factfinder\Export\Block\Adminhtml\System\Config\Button\TestFtpConnection</frontend_model>
         </field>
+
+        <field id="ff_export_push_import_enabled" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Automatic import of product data</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <comment>Runs an automatic import of the product data to the FACT-Finder servers, after the FTP upload is finished.</comment>
+        </field>
+
+        <field id="ff_export_push_import_type" translate="label" type="multiselect" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Pushed import types</label>
+            <options>
+                <option label="Search">search</option>
+                <option label="Suggest">suggest</option>
+                <option label="Recommendation">recommendation</option>
+            </options>
+            <depends>
+                <field id="ff_export_push_import_enabled">1</field>
+            </depends>
+        </field>
     </group>
 </include>
