@@ -3,7 +3,13 @@
     <preference for="Factfinder\Export\Api\ExporterInterface" type="Factfinder\Export\Model\Exporter" />
     <preference for="Factfinder\Export\Api\Filter\FilterInterface" type="Factfinder\Export\Model\Filter\TextFilter" />
     <preference for="Factfinder\Export\Api\StreamInterface" type="Factfinder\Export\Model\Stream\Csv" />
-
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="factfinderexport-export" xsi:type="object">Factfinder\Export\Console\Command\Export</item>
+            </argument>
+        </arguments>
+    </type>
     <type name="Factfinder\Export\Model\Export\Catalog\ExportPreviewDataProvider">
         <arguments>
             <argument name="productFields" xsi:type="array">
@@ -20,12 +26,40 @@
             </argument>
         </arguments>
     </type>
+    <type name="Factfinder\Export\Model\Export\Catalog\DataProvider">
+        <arguments>
+            <argument name="entityTypes" xsi:type="array">
+                <item name="simple" xsi:type="string">Factfinder\Export\Model\Export\Catalog\ProductType\SimpleDataProvider</item>
+                <item name="configurable" xsi:type="string">Factfinder\Export\Model\Export\Catalog\ProductType\ConfigurableDataProvider</item>
+                <item name="grouped" xsi:type="string">Factfinder\Export\Model\Export\Catalog\ProductType\GroupedDataProvider</item>
+                <item name="bundle" xsi:type="string">Factfinder\Export\Model\Export\Catalog\ProductType\BundleDataProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Factfinder\Export\Model\Export\Catalog\FieldProvider">
+        <arguments>
+            <argument name="productFields" xsi:type="array">
+                <item name="CategoryPath" xsi:type="object">Factfinder\Export\Model\Export\Catalog\ProductField\CategoryPath</item>
+                <item name="Brand" xsi:type="object">Factfinder\Export\Model\Export\Catalog\ProductField\Brand</item>
+                <item name="FilterAttributes" xsi:type="object">Factfinder\Export\Model\Export\Catalog\ProductField\FilterAttributes</item>
+                <item name="NumericalAttributes" xsi:type="object">Factfinder\Export\Model\Export\Catalog\ProductField\NumericalAttributes</item>
+            </argument>
+            <argument name="variantFields" xsi:type="array">
+                <item name="ImageURL" xsi:type="object">Factfinder\Export\Model\Export\Catalog\ProductField\ProductImage</item>
+            </argument>
+        </arguments>
+    </type>
     <type name="Factfinder\Export\Model\Export\FeedFactory">
         <arguments>
             <argument name="feedPool" xsi:type="array">
                 <item name="exportPreviewProduct" xsi:type="array">
                     <item xsi:type="string" name="generator">Factfinder\Export\Model\Export\ExportPreviewProductFeed</item>
                     <item xsi:type="string" name="dataProvider">Factfinder\Export\Model\Export\Catalog\ExportPreviewDataProvider</item>
+                    <item xsi:type="string" name="fieldProvider">Factfinder\Export\Model\Export\Catalog\FieldProvider</item>
+                </item>
+                <item name="product" xsi:type="array">
+                    <item xsi:type="string" name="generator">Factfinder\Export\Model\Export\CatalogFeed</item>
+                    <item xsi:type="string" name="dataProvider">Factfinder\Export\Model\Export\Catalog\DataProvider</item>
                     <item xsi:type="string" name="fieldProvider">Factfinder\Export\Model\Export\Catalog\FieldProvider</item>
                 </item>
             </argument>
