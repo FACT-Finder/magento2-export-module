@@ -20,6 +20,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class Export extends Command
 {
 
@@ -38,7 +41,8 @@ class Export extends Command
     }
     protected function configure(): void
     {
-        $this->setName('factfinderexport:export')->setDescription('Export feed data as CSV file');;
+        $this->setName('factfinderexport:export');
+        $this->setDescription('Export feed data as CSV file');
         $this->addArgument('type', InputArgument::REQUIRED, 'type of data to be exported. Possible values are : product, cms');
         $this->addOption('store', 's', InputOption::VALUE_OPTIONAL, 'Store ID or Store Code');
         $this->addOption('upload', 'u', InputOption::VALUE_NONE, 'Upload feed via FTP');
