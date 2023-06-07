@@ -92,4 +92,21 @@
             <argument name="attributeCode" xsi:type="string">manufacturer</argument>
         </arguments>
     </virtualType>
+    <type name="Factfinder\Export\Model\Export\Catalog\ProductField\Attributes">
+        <arguments>
+            <argument name="filter" xsi:type="object">Factfinder\Export\Model\Filter\ExtendedTextFilter</argument>
+        </arguments>
+    </type>
+    <type name="Factfinder\Export\Model\Export\Catalog\ProductType\ConfigurableDataProvider">
+        <arguments>
+            <argument name="filter" xsi:type="object">Factfinder\Export\Model\Filter\ExtendedTextFilter</argument>
+        </arguments>
+    </type>
+    <type name="Factfinder\Export\ViewModel\CategoryPath">
+        <arguments>
+            <argument name="initial" xsi:type="array">
+                <item name="navigation" xsi:type="string">navigation=true</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

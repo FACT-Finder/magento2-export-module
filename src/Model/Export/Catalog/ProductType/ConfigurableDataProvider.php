@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Factfinder\Export\Model\Export\Catalog\ProductType;
 
+use Factfinder\Export\Api\Export\ExportEntityInterface;
 use Factfinder\Export\Api\Filter\FilterInterface;
+use Factfinder\Export\Model\Export\Catalog\Entity\ProductVariationFactory;
 use Factfinder\Export\Model\Formatter\NumberFormatter;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
@@ -19,6 +21,7 @@ class ConfigurableDataProvider extends SimpleDataProvider
         protected NumberFormatter $numberFormatter,
         private readonly ConfigurableProductType $productType,
         private readonly FilterInterface $filter,
+        private readonly ProductVariationFactory    $variationFactory,
         private readonly ProductRepositoryInterface $productRepository,
         private readonly SearchCriteriaBuilder $builder,
         protected array $productFields = []
@@ -29,8 +32,7 @@ class ConfigurableDataProvider extends SimpleDataProvider
     public function getEntities(): iterable
     {
         yield from parent::getEntities();
-        //Implement later:
-//        yield from array_map($this->productVariation($this->product), $this->getChildren($this->product));
+        yield from array_map($this->productVariation($this->product), $this->getChildren($this->product));
     }
 
     public function toArray(): array
@@ -55,34 +57,51 @@ class ConfigurableDataProvider extends SimpleDataProvider
             foreach ($option as ['sku' => $sku, 'super_attribute_label' => $label, 'option_title' => $value]) {
                 $res[$sku][] = "{$sanitize($label)}={$sanitize($value)}";
             }
+
             return $res;
         }, []);
     }
 
-//    /**
-//     * phpcs:disable PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace
-//     *
-//     * @param Product $product
-//     *
-//     * @return ProductInterface[]
-//     */
-//    private function getChildren(Product $product): array
-//    {
-//        $childrenIds = $this->productType->getChildrenIds($product->getId());
-//
-//        //if $childrenIds is empty the entity_id filter will thrown an SQL syntax error
-//        if (
-//            empty($childrenIds)
-//            || empty($childrenIds[0])
-//        ) {
-//            return [];
-//        }
-//
-//        return $this->productRepository
-//            ->getList($this->builder->addFilter('entity_id', $childrenIds, 'in')
-//            ->create())
-//            ->getItems();
-//    }
+    private function productVariation(Product $product): callable
+    {
+        $options = $this->getOptions($product);
+        $data = parent::toArray();
+
+        return function (Product $variation) use ($options, $product, $data): ExportEntityInterface {
+            $sku = $variation->getSku();
+
+            return $this->variationFactory->create([
+                'product' => $variation,
+                'configurable' => $product,
+                'data' => ['FilterAttributes' => '|' . implode('|', $options[$sku] ?? []) . '|'] + $data,
+            ]);
+        };
+    }
+
+    /**
+     * phpcs:disable PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace
+     *
+     * @param Product $product
+     *
+     * @return ProductInterface[]
+     */
+    private function getChildren(Product $product): array
+    {
+        $childrenIds = $this->productType->getChildrenIds($product->getId());
+
+        //if $childrenIds is empty the entity_id filter will throw an SQL syntax error
+        if (
+            empty($childrenIds)
+            || empty($childrenIds[0])
+        ) {
+            return [];
+        }
+
+        return $this->productRepository
+            ->getList($this->builder->addFilter('entity_id', $childrenIds, 'in')
+            ->create())
+            ->getItems();
+    }
 
     private function valueOrEmptyStr(mixed $value): string
     {
