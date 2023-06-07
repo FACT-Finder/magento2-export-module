@@ -12,24 +12,18 @@ use Magento\Catalog\Model\Product;
 
 class ProductVariation implements ExportEntityInterface
 {
-    private Product $product;
-    private Product $configurable;
-    private NumberFormatter $numberFormatter;
     private FieldProvider $fieldprovider;
 
     /** @var string[] */
     private array $configurableData;
 
     public function __construct(
-        Product $product,
-        Product $configurable,
-        NumberFormatter $numberFormatter,
+        private readonly Product $product,
+        private readonly Product $configurable,
+        private readonly NumberFormatter $numberFormatter,
         FieldProvider $variantFieldProvider,
         array $data = []
     ) {
-        $this->product          = $product;
-        $this->configurable     = $configurable;
-        $this->numberFormatter  = $numberFormatter;
         $this->configurableData = $data;
         $this->fieldprovider    = $variantFieldProvider;
     }
