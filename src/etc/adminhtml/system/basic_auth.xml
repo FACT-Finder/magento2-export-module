@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="basic_auth" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>HTTP Export</label>
+        <field id="ff_export_auth_user" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Basic Auth User</label>
+        </field>
+
+        <field id="ff_export_auth_password" translate="label" type="obscure" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Basic Auth Password</label>
+            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+        </field>
+    </group>
+</include>

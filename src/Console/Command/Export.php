@@ -25,7 +25,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class Export extends Command
 {
-
     public function __construct(
         private readonly StoreManagerInterface $storeManager,
         private readonly FeedGeneratorFactory $feedGeneratorFactory,

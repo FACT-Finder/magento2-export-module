@@ -12,6 +12,7 @@
             <include path="Factfinder_Export::system/general.xml" />
             <include path="Factfinder_Export::system/data_transfer.xml" />
             <include path="Factfinder_Export::system/export.xml" />
+            <include path="Factfinder_Export::system/basic_auth.xml" />
         </section>
     </system>
 </config>

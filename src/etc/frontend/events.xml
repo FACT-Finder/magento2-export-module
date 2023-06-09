@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_factfinderexport_export_product">
+        <observer name="ff_export_basic_authentication" instance="Factfinder\Export\Observer\ExportAuthentication"/>
+    </event>
+</config>
