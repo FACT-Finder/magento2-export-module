@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Factfinder\Export\Test;
 
-trait ConsecutiveParams {
+use InvalidArgumentException;
+
+trait ConsecutiveParams
+{
     // @see: https://stackoverflow.com/questions/75389000/replace-phpunit-method-withconsecutive
-    // @see: https://stackoverflow.com/questions/21861825/quick-way-to-find-the-largest-array-in-a-multidimensional-array
     public function consecutiveParams(array ...$args): array
     {
         $callbacks = [];
@@ -16,12 +18,12 @@ trait ConsecutiveParams {
             $returns = [];
 
             foreach ($args as $arg) {
-                if (! array_is_list($arg)) {
-                    throw new \InvalidArgumentException('Every array must be a list');
+                if (!array_is_list($arg)) {
+                    throw new InvalidArgumentException('Every array must be a list');
                 }
 
-                if (! isset($arg[$index])) {
-                    throw new \InvalidArgumentException(sprintf('Every array must contain %d parameters', $count));
+                if (!isset($arg[$index])) {
+                    throw new InvalidArgumentException(sprintf('Every array must contain %d parameters', $count));
                 }
 
                 $returns[] = $arg[$index];

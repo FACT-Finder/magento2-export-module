@@ -17,9 +17,7 @@ use PHPUnit\Framework\TestCase;
 class ExportAuthenticationTest extends TestCase
 {
     private ExportAuthentication $observer;
-
     private MockObject|ActionFlag $flagMock;
-
     private MockObject|Authentication $authMock;
 
     protected function setUp(): void
