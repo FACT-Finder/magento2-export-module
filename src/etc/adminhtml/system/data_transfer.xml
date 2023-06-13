@@ -73,6 +73,12 @@
             <frontend_model>Factfinder\Export\Block\Adminhtml\System\Config\Button\TestFtpConnection</frontend_model>
         </field>
 
+        <field id="ff_export_create_feed" translate="label comment" type="button" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Generate Export File</label>
+            <frontend_model>Factfinder\Export\Block\Adminhtml\System\Config\Button\Feed</frontend_model>
+            <comment>On button click CSV exports of all your products will be generated and uploaded to the specified FTP Server.</comment>
+        </field>
+
         <field id="ff_export_push_import_enabled" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Automatic import of product data</label>
             <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
