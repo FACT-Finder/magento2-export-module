@@ -7,6 +7,7 @@ namespace Factfinder\Export\Model\Config;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Serialize\SerializerInterface;
 use Magento\Store\Model\ScopeInterface;
+use Omikron\FactFinder\Communication\Version;
 
 class ExportConfig
 {
@@ -15,6 +16,7 @@ class ExportConfig
     public function __construct(
         private readonly ScopeConfigInterface $scopeConfig,
         private readonly SerializerInterface $serializer,
+        private readonly CommunicationConfig $communicationConfig,
     ) {
     }
 
@@ -24,6 +26,15 @@ class ExportConfig
     public function getMultiAttributes(?int $storeId = null, bool $numerical = false): array
     {
         return $this->getAttributeCodes($storeId, fn (array $row): bool => $row['multi'] && (bool) $row['numerical'] == $numerical);
+    }
+
+    public function getPushImportDataTypes(int $scopeId = null): array
+    {
+        $configPath = 'factfinder_export/data_transfer/ff_export_push_import_type';
+        $dataTypes = (string) $this->scopeConfig->getValue($configPath, ScopeInterface::SCOPE_STORES, $scopeId);
+        $isNg = $this->communicationConfig->getVersion() === Version::NG;
+
+        return explode(',', $isNg ? $dataTypes : str_replace('search', 'data', $dataTypes));
     }
 
     public function getSingleFields(?int $storeId = null): array

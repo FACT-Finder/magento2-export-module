@@ -4,7 +4,7 @@
         <label>Export settings</label>
         <field id="attributes" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1">
             <label>Fields</label>
-            <frontend_model>Omikron\Factfinder\Block\Adminhtml\System\Config\Field\ExportFields</frontend_model>
+            <frontend_model>Factfinder\Export\Block\Adminhtml\System\Config\Field\ExportFields</frontend_model>
             <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
             <comment>Multiattribute fields can contain multiple fields in one. Often they are used to collect filterable attributes and simplify their configuration in FACT-Finder.
                 Selecting if a field is numerical or not is necessary only for multi attribute column.
