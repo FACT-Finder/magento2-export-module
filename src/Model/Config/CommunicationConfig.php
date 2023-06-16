@@ -23,7 +23,7 @@ class CommunicationConfig implements ParametersSourceInterface
     {
     }
 
-    public function getChannel(int $scopeId = null): string
+    public function getChannel(?int $scopeId = null): string
     {
         return (string) $this->scopeConfig->getValue(self::PATH_CHANNEL, ScopeInterface::SCOPE_STORES, $scopeId);
     }
@@ -33,12 +33,12 @@ class CommunicationConfig implements ParametersSourceInterface
         return (string) $this->scopeConfig->getValue(self::PATH_ADDRESS, ScopeInterface::SCOPE_STORES);
     }
 
-    public function isChannelEnabled(int $scopeId = null): bool
+    public function isChannelEnabled(?int $scopeId = null): bool
     {
         return $this->scopeConfig->isSetFlag(self::PATH_IS_ENABLED, ScopeInterface::SCOPE_STORES, $scopeId);
     }
 
-    public function isPushImportEnabled(int $scopeId = null): bool
+    public function isPushImportEnabled(?int $scopeId = null): bool
     {
         return $this->scopeConfig->isSetFlag(self::PATH_DATA_TRANSFER_IMPORT, ScopeInterface::SCOPE_STORES, $scopeId);
     }
@@ -69,10 +69,6 @@ class CommunicationConfig implements ParametersSourceInterface
 
     private function getServerUrl(): string
     {
-//        if ($this->scopeConfig->isSetFlag(self::PATH_USE_PROXY, ScopeInterface::SCOPE_STORES)) {
-//            return $this->urlBuilder->getUrl('', ['_direct' => Router::FRONT_NAME]);
-//        }
-
         return $this->getAddress();
     }
 }
