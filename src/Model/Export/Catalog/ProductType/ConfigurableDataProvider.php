@@ -21,7 +21,7 @@ class ConfigurableDataProvider extends SimpleDataProvider
         protected NumberFormatter $numberFormatter,
         private readonly ConfigurableProductType $productType,
         private readonly FilterInterface $filter,
-        private readonly ProductVariationFactory    $variationFactory,
+        private readonly ProductVariationFactory $variationFactory,
         private readonly ProductRepositoryInterface $productRepository,
         private readonly SearchCriteriaBuilder $builder,
         protected array $productFields = []
