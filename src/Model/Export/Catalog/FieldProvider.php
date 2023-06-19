@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace Factfinder\Export\Model\Export\Catalog;
 
 use Factfinder\Export\Api\Export\FieldProviderInterface;
+use Factfinder\Export\Model\Config\ExportConfig;
+use Factfinder\Export\Model\Export\Catalog\ProductField\GenericFieldFactory;
 
 class FieldProvider implements FieldProviderInterface
 {
     private ?array $cachedFields;
     private ?array $cachedVariantFields;
     public function __construct(
+        private readonly ExportConfig $config,
+        private readonly GenericFieldFactory $fieldFactory,
         private readonly array $productFields = [],
         private readonly array $variantFields = [],
     ) {
@@ -35,10 +39,10 @@ class FieldProvider implements FieldProviderInterface
 
     public function getFrom(array $fields): array
     {
-        /**
-         * implement GenericFieldFactory in the future
-         */
+        return array_reduce($this->config->getSingleFields(), function (array $fields, string $attributeCode): array {
+            $attribute = $this->fieldFactory->create(['attributeCode' => $attributeCode]);
 
-        return $fields;
+            return [$attribute->getName() => $attribute] + $fields;
+        }, $fields);
     }
 }

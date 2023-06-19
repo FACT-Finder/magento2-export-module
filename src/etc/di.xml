@@ -109,4 +109,14 @@
             </argument>
         </arguments>
     </type>
+    <virtualType name="Factfinder\Export\Model\Product\Attribute\CollectionFactory" type="Magento\Eav\Model\ResourceModel\Entity\Attribute\CollectionFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Magento\Catalog\Model\ResourceModel\Product\Attribute\Collection</argument>
+        </arguments>
+    </virtualType>
+    <type name="Factfinder\Export\Model\FtpUploader">
+        <arguments>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </type>
 </config>
