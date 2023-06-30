@@ -62,6 +62,15 @@
                     <item xsi:type="string" name="dataProvider">Factfinder\Export\Model\Export\Catalog\DataProvider</item>
                     <item xsi:type="string" name="fieldProvider">Factfinder\Export\Model\Export\Catalog\FieldProvider</item>
                 </item>
+                <item name="cms" xsi:type="array">
+                    <item xsi:type="string" name="generator">Factfinder\Export\Model\Export\CmsFeed</item>
+                    <item xsi:type="string" name="dataProvider">Factfinder\Export\Model\Export\Cms\DataProvider</item>
+                    <item xsi:type="array" name="fieldProvider">
+                        <item name="Content" xsi:type="object">Factfinder\Export\Model\Export\Cms\Field\Content</item>
+                        <item name="Deeplink" xsi:type="object">Factfinder\Export\Model\Export\Cms\Field\Deeplink</item>
+                        <item name="Image" xsi:type="object">Factfinder\Export\Model\Export\Cms\Field\Image</item>
+                    </item>
+                </item>
             </argument>
         </arguments>
     </type>
@@ -84,6 +93,19 @@
                 <item name="FilterAttributes" xsi:type="string">FilterAttributes</item>
                 <item name="HasVariants" xsi:type="string">HasVariants</item>
                 <item name="NumericalAttributes" xsi:type="string">NumericalAttributes</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Factfinder\Export\Model\Export\CmsFeed" type="Factfinder\Export\Model\Export\Feed">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="PageId" xsi:type="string">PageId</item>
+                <item name="Master" xsi:type="string">Master</item>
+                <item name="Identifier" xsi:type="string">Identifier</item>
+                <item name="Title" xsi:type="string">Title</item>
+                <item name="ContentHeading" xsi:type="string">ContentHeading</item>
+                <item name="MetaKeywords" xsi:type="string">MetaKeywords</item>
+                <item name="MetaDescription" xsi:type="string">MetaDescription</item>
             </argument>
         </arguments>
     </virtualType>
@@ -117,6 +139,16 @@
     <type name="Factfinder\Export\Model\FtpUploader">
         <arguments>
             <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </type>
+    <type name="Factfinder\Export\Model\Export\Cms\Field\Content">
+        <arguments>
+            <argument name="filter" xsi:type="object">Magento\Email\Model\Template\Filter\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Factfinder\Export\Model\Export\Cms\Field\Image">
+        <arguments>
+            <argument name="filter" xsi:type="object">Magento\Email\Model\Template\Filter\Proxy</argument>
         </arguments>
     </type>
 </config>
