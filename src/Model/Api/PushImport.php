@@ -13,7 +13,7 @@ use Omikron\FactFinder\Communication\Version;
 
 class PushImport
 {
-    private string $pushImportResult;
+    private string $pushImportResult = '';
 
     public function __construct(
         private readonly ClientBuilder $clientBuilder,
