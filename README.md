@@ -184,7 +184,7 @@ Alternative way to integrate Your feed is to use builtin FACT-Finder functionali
 
 ![HTTP Export](docs/assets/http-export.png "HTTP Export")
 
-Exports are available under following location: `https://YOUR_SHOP_URL/factfinder/export/product/store/YOUR_STORE_ID`
+Exports are available under following location: `https://YOUR_SHOP_URL/factfinder-export/export/product/store/YOUR_STORE_ID`
 
 If there's no `store id` provided, feed will be generated with the default store (by default with id = 1)
 
