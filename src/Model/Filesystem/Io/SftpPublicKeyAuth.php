@@ -39,13 +39,12 @@ class SftpPublicKeyAuth extends SftpBase
         $configDirectory = $this->fileSystem->getDirectoryRead(DirectoryList::CONFIG);
         $filesInLocation = $configDirectory->read('factfinder/sftp');
         $keyFile = $configDirectory->readFile($filesInLocation[$this->getFileIndex($filesInLocation)]);
-        $privateKey = PublicKeyLoader::loadPrivateKey($keyFile);
 
         if ($passphrase) {
-            $privateKey = PublicKeyLoader::loadPrivateKey($keyFile, $passphrase);
+            return PublicKeyLoader::loadPrivateKey($keyFile, $passphrase);
         }
 
-        return $privateKey;
+        return PublicKeyLoader::loadPrivateKey($keyFile);
     }
 
     /**
