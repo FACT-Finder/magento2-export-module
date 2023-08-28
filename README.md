@@ -197,9 +197,9 @@ Command name: `factfinderexport:export [TYPE]`. You can add execution of this co
 - Arguments:
     - type (mandatory) - set the `FeedFactory` class with a type of data to be exported. If for a given type, no data provider exists, an exception will be thrown. Possible default values are `product` and `cms`.
 - Options (all optional)
-    - store - define a store, which the product data will be taken from
-    - skip-ftp-upload - skips the ftp upload
-    - skip-push-import - skips triggering import
+    - --store - define a store, which the product data will be taken from
+    - --upload - upload generated file to server via FTP/SFTP connection
+    - --push-import - triggering import in Fact-Finder system
 
 ## Modification examples
 Our Magento 2 module offers a fully working integration out of the box. However, most projects may require
