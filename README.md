@@ -171,8 +171,7 @@ Then You can click the button (visible below) to generate and then, upload file 
 Using of that button is dedicated mostly for ad-hoc export. In production environment You'll rather use Cron job which will do the same work without forcing You to click the export button each time You want to send new data to FACT-Finder.
 To configure Cron, please activate the option *Generate Export Files(s) automatically* and the export will be generated according to cron export settings
 
-In file [crontab.xml](src/etc/crontab.xml) You can see a expression `<schedule>0 1 * * *</schedule>` which is a default value however You can define your own cron expression in the module configuration (section visible below).
-Value set here, will override the default crontab config.
+You can define your own cron expression in the module configuration (section visible below).
 Please remember that this setting is only for that specific task ran under Magento supervisor. It won't work until You have no system Cron configured. To do that, You'll need to add Magento Cron entrypoint to Your system crontab file.
 Read this [tutorial](https://devdocs.magento.com/guides/v2.4/config-guide/cli/config-cli-subcommands-cron.html) for more information
 
