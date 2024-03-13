@@ -34,5 +34,10 @@
     "phpunit/phpunit": "^10.1",
     "phpmd/phpmd" : "^2.13",
     "magento/magento-coding-standard": "^31.0"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "([ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths ../../magento/magento-coding-standard/,../../phpcompatibility/php-compatibility)"
+    ]
   }
 }
